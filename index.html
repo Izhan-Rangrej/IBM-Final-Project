@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Furniture | Premium Modern Furniture Store</title>
+  <meta name="description" content="Luxury Furniture - premium sofas, beds, dining tables, office chairs, wardrobes and decor for modern living." />
+
+  <!-- Bootstrap 5 + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================
+       Luxury Furniture - Single File E-commerce Website
+       Theme: Black, Gold, White, Beige | Bootstrap 5 Enhanced
+    ========================================================== */
+    :root {
+      --black: #080706;
+      --black-soft: #12100e;
+      --gold: #c9a44c;
+      --gold-light: #f0d98b;
+      --white: #ffffff;
+      --beige: #f5efe4;
+      --beige-deep: #e4d3b6;
+      --muted: #756d61;
+      --text: #191714;
+      --surface: rgba(255,255,255,.78);
+      --surface-solid: #ffffff;
+      --border: rgba(201,164,76,.24);
+      --shadow: 0 24px 70px rgba(10,8,5,.14);
+      --shadow-gold: 0 18px 55px rgba(201,164,76,.22);
+      --radius: 24px;
+      --transition: all .35s cubic-bezier(.2,.75,.25,1);
+    }
+
+    [data-theme="dark"] {
+      --white: #0c0b0a;
+      --beige: #14110d;
+      --beige-deep: #2b2418;
+      --text: #f8f0df;
+      --muted: #c8b99e;
+      --surface: rgba(24,20,15,.74);
+      --surface-solid: #15120f;
+      --border: rgba(240,217,139,.22);
+      --shadow: 0 26px 80px rgba(0,0,0,.42);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201,164,76,.16), transparent 32rem),
+        linear-gradient(180deg, var(--beige), var(--white) 48%, var(--beige));
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .text-gold { color: var(--gold) !important; }
+    .bg-gold { background: var(--gold) !important; }
+    .section-padding { padding: 96px 0; }
+    .section-kicker {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    .section-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+      color: var(--text);
+    }
+    .section-subtitle { color: var(--muted); max-width: 720px; }
+
+    .lux-btn {
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: .85rem 1.35rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      justify-content: center;
+    }
+    .lux-btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #130f09;
+      box-shadow: var(--shadow-gold);
+    }
+    .lux-btn-primary:hover { transform: translateY(-4px); filter: brightness(1.05); color: #080706; }
+    .lux-btn-outline { color: var(--text); background: rgba(255,255,255,.08); backdrop-filter: blur(10px); }
+    .lux-btn-outline:hover { background: var(--gold); color: #100d08; transform: translateY(-4px); }
+
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      display: grid; place-items: center;
+      background: #080706;
+      transition: opacity .55s ease, visibility .55s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      width: 150px; height: 150px; border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid rgba(201,164,76,.35);
+      color: var(--gold-light);
+      font-family: Georgia, serif;
+      font-size: 2.1rem;
+      position: relative;
+      animation: glowPulse 1.7s infinite alternate;
+    }
+    .loader-logo::before {
+      content: ""; position: absolute; inset: -11px; border-radius: inherit;
+      border: 3px solid transparent; border-top-color: var(--gold); border-right-color: var(--gold-light);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes glowPulse { to { box-shadow: 0 0 55px rgba(201,164,76,.55); } }
+
+    /* Navbar */
+    .navbar {
+      padding: 1rem 0;
+      transition: var(--transition);
+      background: rgba(8,7,6,.62);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,164,76,.18);
+    }
+    .navbar.scrolled { padding: .6rem 0; background: rgba(8,7,6,.92); }
+    .navbar-brand {
+      color: #fff !important; font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.55rem; font-weight: 700; letter-spacing: .02em;
+    }
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #0b0906;
+      margin-right: .45rem; box-shadow: 0 12px 35px rgba(201,164,76,.28);
+    }
+    .nav-link { color: rgba(255,255,255,.82) !important; font-weight: 700; font-size: .93rem; position: relative; }
+    .nav-link:hover, .nav-link.active { color: var(--gold-light) !important; }
+    .nav-link::after { content: ""; position: absolute; left: .5rem; bottom: .15rem; width: 0; height: 2px; background: var(--gold); transition: var(--transition); }
+    .nav-link:hover::after { width: calc(100% - 1rem); }
+    .nav-search { max-width: 230px; position: relative; }
+    .nav-search input {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); color: #fff;
+      border-radius: 999px; padding-left: 2.2rem; font-size: .9rem;
+    }
+    .nav-search input::placeholder { color: rgba(255,255,255,.62); }
+    .nav-search i { position: absolute; left: .85rem; top: 50%; transform: translateY(-50%); color: var(--gold-light); z-index: 2; }
+    .icon-btn {
+      width: 42px; height: 42px; display: inline-grid; place-items: center; border-radius: 50%; border: 1px solid rgba(201,164,76,.26);
+      color: #fff; background: rgba(255,255,255,.08); position: relative; transition: var(--transition);
+    }
+    .icon-btn:hover { background: var(--gold); color: #090705; transform: translateY(-2px); }
+    .badge-count { position: absolute; top: -4px; right: -6px; background: #e73d3d; color: #fff; min-width: 19px; height: 19px; border-radius: 50%; font-size: .72rem; display: grid; place-items: center; }
+    .login-btn { white-space: nowrap; padding: .65rem 1rem; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; position: relative; overflow: hidden; color: #fff;
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.48), rgba(0,0,0,.18)),
+        url('https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=2200&q=85');
+      background-size: cover; background-position: center; background-attachment: fixed;
+    }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 22%, rgba(201,164,76,.2), transparent 25rem); pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; padding-top: 90px; }
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', serif; font-size: clamp(3rem, 8vw, 7.2rem); line-height: .95; font-weight: 800;
+      text-shadow: 0 25px 70px rgba(0,0,0,.42); animation: fadeUp .9s ease both;
+    }
+    .hero .lead { max-width: 650px; color: rgba(255,255,255,.82); font-size: clamp(1.05rem, 2vw, 1.35rem); animation: fadeUp 1s ease .2s both; }
+    .hero-actions { animation: fadeUp 1s ease .38s both; }
+    .hero-stats { margin-top: 3rem; animation: fadeUp 1s ease .5s both; }
+    .hero-stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
+    .hero-stat strong { display: block; font-size: 1.6rem; color: var(--gold-light); }
+    .scroll-indicator { position: absolute; left: 50%; bottom: 28px; z-index: 3; width: 30px; height: 48px; border: 1px solid rgba(255,255,255,.52); border-radius: 999px; transform: translateX(-50%); }
+    .scroll-indicator::after { content: ""; width: 6px; height: 6px; background: var(--gold-light); border-radius: 50%; position: absolute; left: 50%; top: 9px; transform: translateX(-50%); animation: mouse 1.5s infinite; }
+    @keyframes mouse { to { top: 28px; opacity: 0; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* About */
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { border-radius: 32px; min-height: 460px; object-fit: cover; box-shadow: var(--shadow); }
+    .floating-note { position: absolute; right: -20px; bottom: 35px; max-width: 260px; padding: 1.2rem; }
+    .feature-line { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.1rem; }
+    .feature-line i { width: 44px; height: 44px; flex: 0 0 44px; border-radius: 50%; display: grid; place-items: center; color: #111; background: linear-gradient(135deg, var(--gold), var(--gold-light)); }
+    .counter-card { padding: 1.7rem; text-align: center; transition: var(--transition); height: 100%; }
+    .counter-card:hover { transform: translateY(-8px); }
+    .counter { color: var(--gold); font-weight: 900; font-size: 2.35rem; }
+
+    /* Categories */
+    .category-card { height: 280px; overflow: hidden; position: relative; cursor: pointer; border-radius: 28px; box-shadow: var(--shadow); }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+    .category-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(0,0,0,.78)); }
+    .category-card .category-info { position: absolute; left: 1.35rem; right: 1.35rem; bottom: 1.2rem; color: #fff; z-index: 2; transition: var(--transition); }
+    .category-card:hover img { transform: scale(1.12); }
+    .category-card:hover .category-info { transform: translateY(-10px); }
+    .category-card.active { outline: 3px solid var(--gold); }
+
+    /* Filters / Products */
+    .filter-panel { padding: 1.25rem; position: sticky; top: 96px; }
+    .form-control, .form-select {
+      border-radius: 14px; border-color: var(--border); background-color: var(--surface-solid); color: var(--text);
+    }
+    .product-card { overflow: hidden; height: 100%; transition: var(--transition); position: relative; }
+    .product-card:hover { transform: translateY(-9px); box-shadow: 0 30px 80px rgba(0,0,0,.2); }
+    .product-img-box { height: 250px; overflow: hidden; border-radius: 22px 22px 0 0; position: relative; background: var(--beige-deep); }
+    .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform .75s ease; }
+    .product-card:hover .product-img-box img { transform: scale(1.1); }
+    .discount-pill { position: absolute; left: 14px; top: 14px; background: rgba(8,7,6,.86); color: var(--gold-light); border: 1px solid rgba(201,164,76,.36); padding: .38rem .65rem; border-radius: 999px; font-weight: 800; font-size: .76rem; }
+    .wishlist-floating { position: absolute; right: 14px; top: 14px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgba(255,255,255,.86); color: #111; display: grid; place-items: center; transition: var(--transition); }
+    .wishlist-floating.active, .wishlist-floating:hover { background: #e83e52; color: #fff; }
+    .product-body { padding: 1.25rem; }
+    .stars { color: #f2b01e; letter-spacing: .06em; font-size: .86rem; }
+    .old-price { text-decoration: line-through; color: var(--muted); }
+    .price { color: var(--gold); font-weight: 900; font-size: 1.2rem; }
+
+    /* Offers */
+    .offer-card { min-height: 230px; color: #fff; overflow: hidden; position: relative; padding: 1.8rem; display: flex; flex-direction: column; justify-content: end; background-size: cover; background-position: center; }
+    .offer-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.82)); }
+    .offer-card > * { position: relative; z-index: 1; }
+    .countdown-box { background: #080706; color: var(--gold-light); border: 1px solid rgba(201,164,76,.32); border-radius: 18px; padding: .9rem; min-width: 76px; text-align: center; }
+
+    /* Reviews */
+    .review-card { padding: 2rem; max-width: 850px; margin: auto; }
+    .review-photo { width: 86px; height: 86px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin: 0 auto 1rem; }
+
+    /* Contact */
+    .contact-icon { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #111; flex: 0 0 46px; }
+    .map-frame { width: 100%; height: 330px; border: 0; border-radius: 24px; filter: grayscale(.2) contrast(1.05); }
+
+    /* Cart Sidebar */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); opacity: 0; visibility: hidden; z-index: 9000; transition: var(--transition); }
+    .overlay.show { opacity: 1; visibility: visible; }
+    .cart-sidebar {
+      position: fixed; top: 0; right: -440px; width: min(430px, 100vw); height: 100vh; z-index: 9100;
+      background: var(--surface-solid); box-shadow: -24px 0 70px rgba(0,0,0,.28); transition: var(--transition); display: flex; flex-direction: column;
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-header, .cart-footer { padding: 1.25rem; border-bottom: 1px solid var(--border); }
+    .cart-footer { border-top: 1px solid var(--border); border-bottom: 0; margin-top: auto; }
+    .cart-items { padding: 1rem; overflow-y: auto; flex: 1; }
+    .cart-item { display: grid; grid-template-columns: 72px 1fr auto; gap: .8rem; padding: .85rem 0; border-bottom: 1px solid var(--border); }
+    .cart-item img { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; }
+    .qty-control { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid var(--border); border-radius: 999px; padding: .15rem .4rem; }
+    .qty-control button { border: 0; background: transparent; color: var(--text); font-weight: 900; }
+
+    /* Chatbot */
+    .chat-toggle, .back-to-top {
+      position: fixed; right: 24px; width: 58px; height: 58px; border: 0; border-radius: 50%; z-index: 8000;
+      display: grid; place-items: center; color: #111; background: linear-gradient(135deg, var(--gold), var(--gold-light)); box-shadow: var(--shadow-gold); transition: var(--transition);
+    }
+    .chat-toggle { bottom: 24px; font-size: 1.35rem; }
+    .chat-toggle:hover, .back-to-top:hover { transform: translateY(-5px) scale(1.03); }
+    .chatbot {
+      position: fixed; right: 24px; bottom: 96px; width: min(380px, calc(100vw - 32px)); height: 560px; z-index: 8050;
+      transform: translateY(30px) scale(.94); opacity: 0; visibility: hidden; transition: var(--transition); overflow: hidden; display: flex; flex-direction: column;
+    }
+    .chatbot.open { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
+    .chat-head { padding: 1rem; color: #fff; background: linear-gradient(135deg, #080706, #2a2112); display: flex; align-items: center; justify-content: space-between; }
+    .chat-messages { padding: 1rem; overflow-y: auto; flex: 1; background: linear-gradient(180deg, var(--beige), var(--surface-solid)); }
+    .bubble { max-width: 82%; padding: .75rem .9rem; border-radius: 18px; margin: .55rem 0; font-size: .94rem; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .bubble.bot { background: var(--surface-solid); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+    .bubble.user { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #111; margin-left: auto; border-bottom-right-radius: 4px; }
+    .quick-replies { display: flex; flex-wrap: wrap; gap: .45rem; padding: .7rem 1rem; border-top: 1px solid var(--border); background: var(--surface-solid); }
+    .quick-replies button { border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--text); padding: .35rem .65rem; font-size: .78rem; }
+    .chat-input { display: flex; gap: .45rem; padding: .8rem; background: var(--surface-solid); border-top: 1px solid var(--border); }
+    .typing span { display: inline-block; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; margin-right: 3px; animation: typing 1s infinite alternate; }
+    .typing span:nth-child(2) { animation-delay: .15s; } .typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing { to { transform: translateY(-5px); opacity: .4; } }
+
+    /* Utility */
+    .back-to-top { bottom: 94px; right: 92px; opacity: 0; visibility: hidden; width: 48px; height: 48px; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .fade-section { opacity: 0; transform: translateY(32px); transition: opacity .8s ease, transform .8s ease; }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+    .toast-container { z-index: 9999; }
+    .modal-content { background: var(--surface-solid); color: var(--text); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+    footer { background: #080706; color: rgba(255,255,255,.78); }
+    footer a:hover { color: var(--gold-light); }
+    .social a { width: 42px; height: 42px; display: inline-grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; margin-right: .35rem; transition: var(--transition); }
+    .social a:hover { background: var(--gold); color: #111; transform: translateY(-4px); }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse { background: rgba(8,7,6,.96); padding: 1rem; border-radius: 20px; margin-top: .9rem; border: 1px solid rgba(201,164,76,.2); }
+      .nav-search { max-width: 100%; margin: .8rem 0; }
+      .hero { background-attachment: scroll; }
+      .section-padding { padding: 72px 0; }
+      .floating-note { position: static; margin-top: 1rem; max-width: none; }
+      .filter-panel { position: static; }
+    }
+    @media (max-width: 575.98px) {
+      .hero-stats { display: none; }
+      .product-img-box { height: 220px; }
+      .chat-toggle { right: 16px; bottom: 16px; }
+      .chatbot { right: 16px; bottom: 84px; height: 520px; }
+      .back-to-top { right: 16px; bottom: 86px; }
+      .section-title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loader" aria-label="Loading Luxury Furniture website">
+    <div class="text-center">
+      <div class="loader-logo mx-auto">LF</div>
+      <p class="mt-4 text-gold fw-bold text-uppercase" style="letter-spacing:.25em">Luxury Furniture</p>
+    </div>
+  </div>
+
+  <!-- Offer Notification Toast -->
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="offerToast" class="toast glass-card" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-transparent border-0">
+        <i class="fa-solid fa-gift text-gold me-2"></i>
+        <strong class="me-auto">Luxury Offer</strong>
+        <small>Now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">Use coupon <strong>LUX10</strong> and enjoy 10% off your first luxury order.</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand d-flex align-items-center" href="#home" aria-label="Luxury Furniture home">
+        <span class="brand-mark"><i class="fa-solid fa-couch"></i></span>Luxury Furniture
+      </a>
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#offers">Offers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="d-lg-flex align-items-center gap-2">
+          <div class="nav-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="navSearch" class="form-control form-control-sm" type="search" placeholder="Search furniture..." />
+          </div>
+          <button class="icon-btn" id="wishlistNavBtn" aria-label="Open wishlist"><i class="fa-regular fa-heart"></i><span id="wishlistCount" class="badge-count">0</span></button>
+          <button class="icon-btn" id="cartBtn" aria-label="Open cart"><i class="fa-solid fa-bag-shopping"></i><span id="cartCount" class="badge-count">0</span></button>
+          <button class="icon-btn" id="darkToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+          <button class="lux-btn lux-btn-primary login-btn" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-user"></i> Login / Signup</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="hero">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="section-kicker">Premium Living Collection</span>
+          <h1 class="mt-3">Crafting Comfort,<br><span class="text-gold">Defining Luxury</span></h1>
+          <p class="lead my-4">Premium furniture designed for modern living. Discover hand-finished silhouettes, rare materials and timeless comfort for exceptional homes.</p>
+          <div class="hero-actions d-flex flex-wrap gap-3">
+            <a href="#products" class="lux-btn lux-btn-primary"><i class="fa-solid fa-cart-shopping"></i> Shop Now</a>
+            <a href="#categories" class="lux-btn lux-btn-primary"><i class="fa-solid fa-layer-group"></i> Explore Collection</a>
+          </div>
+          <div class="hero-stats d-flex flex-wrap gap-5">
+            <div class="hero-stat"><strong>12k+</strong><span>Elegant Homes</span></div>
+            <div class="hero-stat"><strong>5★</strong><span>Customer Rated</span></div>
+            <div class="hero-stat"><strong>36</strong><span>Cities Served</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="scroll-indicator" aria-hidden="true"></span>
+  </header>
+
+  <main>
+    <!-- About Section -->
+    <section id="about" class="section-padding fade-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="about-img-wrap">
+              <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1300&q=85" alt="Luxury living room with designer furniture" />
+              <div class="floating-note glass-card">
+                <strong class="text-gold d-block mb-1">Crafted to Order</strong>
+                <span class="small">Every signature piece is checked by specialists before delivery.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="section-kicker">Our Story</span>
+            <h2 class="section-title mt-2">Where premium materials meet thoughtful design.</h2>
+            <p class="section-subtitle mt-3">Luxury Furniture began with a simple promise: create furniture that looks extraordinary, feels effortless, and lasts for generations. From kiln-dried hardwood frames to hand-selected leather, our collections are built for homes that value detail.</p>
+            <div class="mt-4">
+              <div class="feature-line"><i class="fa-solid fa-shield-halved"></i><div><h5>Quality Assurance</h5><p class="mb-0 text-muted">Multi-stage inspection, durable joinery and premium finish protection.</p></div></div>
+              <div class="feature-line"><i class="fa-solid fa-gem"></i><div><h5>Premium Materials</h5><p class="mb-0 text-muted">Solid wood, Italian leather, brushed metal and luxurious upholstery.</p></div></div>
+              <div class="feature-line"><i class="fa-solid fa-pen-ruler"></i><div><h5>Custom Furniture Service</h5><p class="mb-0 text-muted">Choose dimensions, fabrics, colors and finishes tailored to your space.</p></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 mt-5">
+          <div class="col-6 col-lg-3"><div class="counter-card glass-card"><div class="counter" data-target="12000">0</div><p class="mb-0 fw-bold">Happy Customers</p></div></div>
+          <div class="col-6 col-lg-3"><div class="counter-card glass-card"><div class="counter" data-target="48500">0</div><p class="mb-0 fw-bold">Products Sold</p></div></div>
+          <div class="col-6 col-lg-3"><div class="counter-card glass-card"><div class="counter" data-target="18">0</div><p class="mb-0 fw-bold">Years Experience</p></div></div>
+          <div class="col-6 col-lg-3"><div class="counter-card glass-card"><div class="counter" data-target="36">0</div><p class="mb-0 fw-bold">Cities Delivered</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="section-padding fade-section" style="background:rgba(201,164,76,.07)">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-kicker">Curated Categories</span>
+          <h2 class="section-title mt-2">Explore by room, style and purpose.</h2>
+          <p class="section-subtitle mx-auto mt-3">Click a category to instantly filter the product collection.</p>
+        </div>
+        <div class="row g-4" id="categoryGrid"></div>
+      </div>
+    </section>
+
+    <!-- Products + Filters -->
+    <section id="products" class="section-padding fade-section">
+      <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-end mb-4">
+          <div>
+            <span class="section-kicker">Featured Products</span>
+            <h2 class="section-title mt-2 mb-0">Luxury pieces for modern living.</h2>
+          </div>
+          <button class="lux-btn lux-btn-outline" id="clearFilters"><i class="fa-solid fa-rotate-left"></i> Reset Filters</button>
+        </div>
+        <div class="row g-4">
+          <aside class="col-lg-3">
+            <div class="filter-panel glass-card">
+              <h5 class="mb-3"><i class="fa-solid fa-sliders text-gold me-2"></i>Filters</h5>
+              <label class="form-label fw-bold">Search Products</label>
+              <input id="productSearch" class="form-control mb-3" type="search" placeholder="Sofa, bed, chair..." />
+              <label class="form-label fw-bold">Category</label>
+              <select id="categoryFilter" class="form-select mb-3">
+                <option value="all">All Categories</option>
+                <option value="Sofas">Sofas</option>
+                <option value="Beds">Beds</option>
+                <option value="Dining Tables">Dining Tables</option>
+                <option value="Office Chairs">Office Chairs</option>
+                <option value="Wardrobes">Wardrobes</option>
+                <option value="Decor">Decor</option>
+              </select>
+              <label class="form-label fw-bold">Max Price: ₹<span id="priceValue">300000</span></label>
+              <input id="priceFilter" class="form-range mb-3" type="range" min="10000" max="300000" step="5000" value="300000" />
+              <label class="form-label fw-bold">Minimum Rating</label>
+              <select id="ratingFilter" class="form-select mb-3">
+                <option value="0">Any Rating</option>
+                <option value="4">4★ & above</option>
+                <option value="4.5">4.5★ & above</option>
+                <option value="4.8">4.8★ & above</option>
+              </select>
+              <label class="form-label fw-bold">Material</label>
+              <select id="materialFilter" class="form-select">
+                <option value="all">All Materials</option>
+                <option value="wood">Wood</option>
+                <option value="metal">Metal</option>
+                <option value="leather">Leather</option>
+              </select>
+            </div>
+          </aside>
+          <div class="col-lg-9">
+            <div class="row g-4" id="productGrid"></div>
+            <div id="noProducts" class="glass-card text-center p-5 d-none">
+              <i class="fa-solid fa-magnifying-glass fa-2x text-gold mb-3"></i>
+              <h4>No matching products found</h4>
+              <p class="text-muted mb-0">Try changing your filter or search keyword.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offers -->
+    <section id="offers" class="section-padding fade-section" style="background:#080706;color:#fff">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-kicker">Limited-Time Offers</span>
+          <h2 class="section-title mt-2 text-white">Exclusive luxury sale events.</h2>
+          <p class="mx-auto mt-3" style="color:rgba(255,255,255,.68);max-width:720px">Claim curated savings before the clock expires.</p>
+          <div class="d-flex justify-content-center gap-2 gap-md-3 mt-4 flex-wrap" id="countdown">
+            <div class="countdown-box"><strong id="days">00</strong><br><small>Days</small></div>
+            <div class="countdown-box"><strong id="hours">00</strong><br><small>Hours</small></div>
+            <div class="countdown-box"><strong id="minutes">00</strong><br><small>Minutes</small></div>
+            <div class="countdown-box"><strong id="seconds">00</strong><br><small>Seconds</small></div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4"><div class="offer-card glass-card" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85')"><span class="section-kicker">SOFA20</span><h3>20% OFF Sofas</h3><p>Elegant seating for statement living rooms.</p></div></div>
+          <div class="col-md-4"><div class="offer-card glass-card" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85')"><span class="section-kicker">BEDLUX</span><h3>Buy Bed, Get Mattress Discount</h3><p>Upgrade your suite with complete comfort.</p></div></div>
+          <div class="col-md-4"><div class="offer-card glass-card" style="background-image:url('https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=900&q=85')"><span class="section-kicker">FESTIVE</span><h3>Festival Sale</h3><p>Golden prices on premium collections.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section-padding fade-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-kicker">Client Reviews</span>
+          <h2 class="section-title mt-2">Loved by luxury homeowners.</h2>
+        </div>
+        <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200">
+          <div class="carousel-inner">
+            <div class="carousel-item active"><div class="review-card glass-card text-center"><img class="review-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80" alt="Customer Aisha Kapoor"><div class="stars mb-2">★★★★★</div><h5>Aisha Kapoor</h5><p class="mb-0">“The sofa feels bespoke and the delivery team styled it beautifully. Truly premium from showroom to home.”</p></div></div>
+            <div class="carousel-item"><div class="review-card glass-card text-center"><img class="review-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Customer Rohan Mehta"><div class="stars mb-2">★★★★★</div><h5>Rohan Mehta</h5><p class="mb-0">“Our custom dining table is flawless. The wood grain, finish and detailing exceeded expectations.”</p></div></div>
+            <div class="carousel-item"><div class="review-card glass-card text-center"><img class="review-photo" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80" alt="Customer Neha Sharma"><div class="stars mb-2">★★★★★</div><h5>Neha Sharma</h5><p class="mb-0">“The Luxury Assistant helped us choose the right wardrobe. Amazing service and excellent warranty.”</p></div></div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></button>
+          <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding fade-section" style="background:rgba(201,164,76,.07)">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-kicker">Visit Our Atelier</span>
+          <h2 class="section-title mt-2">Contact Luxury Furniture.</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex gap-3 mb-4"><span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span><div><h5>Store Address</h5><p class="mb-0 text-muted">Royal Avenue, MG Road, Bengaluru, Karnataka 560001</p></div></div>
+              <div class="d-flex gap-3 mb-4"><span class="contact-icon"><i class="fa-solid fa-phone"></i></span><div><h5>Phone</h5><p class="mb-0 text-muted">+91 98765 43210</p></div></div>
+              <div class="d-flex gap-3 mb-4"><span class="contact-icon"><i class="fa-solid fa-envelope"></i></span><div><h5>Email</h5><p class="mb-0 text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb989e9b9b84999fab879e939e99928d9e9985829f9e998ec58e938a869b878e">[email&#160;protected]</a></p></div></div>
+              <div class="d-flex gap-3"><span class="contact-icon"><i class="fa-regular fa-clock"></i></span><div><h5>Opening Hours</h5><p class="mb-0 text-muted">Mon–Sat: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</p></div></div>
+              <iframe class="map-frame mt-4" loading="lazy" title="Luxury Furniture store map" src="https://www.google.com/maps?q=MG%20Road%20Bengaluru&output=embed"></iframe>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <form class="glass-card p-4 h-100" id="contactForm">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label fw-bold">Full Name</label><input class="form-control" required placeholder="Your name" /></div>
+                <div class="col-md-6"><label class="form-label fw-bold">Email</label><input class="form-control" type="email" required placeholder="you@example.com" /></div>
+                <div class="col-md-6"><label class="form-label fw-bold">Phone</label><input class="form-control" placeholder="+91..." /></div>
+                <div class="col-md-6"><label class="form-label fw-bold">Interest</label><select class="form-select"><option>Custom furniture</option><option>Sofas</option><option>Beds</option><option>Dining</option><option>Wardrobes</option></select></div>
+                <div class="col-12"><label class="form-label fw-bold">Message</label><textarea class="form-control" rows="6" required placeholder="Tell us about your dream furniture..."></textarea></div>
+                <div class="col-12"><button class="lux-btn lux-btn-primary w-100" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h3 class="navbar-brand mb-3"><span class="brand-mark"><i class="fa-solid fa-couch"></i></span>Luxury Furniture</h3>
+          <p>Premium furniture designed for modern living — crafted with rare materials, meticulous detail and enduring comfort.</p>
+          <div class="social"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div>
+        </div>
+        <div class="col-6 col-lg-2"><h5 class="text-gold">Quick Links</h5><ul class="list-unstyled lh-lg"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#categories">Categories</a></li><li><a href="#products">Products</a></li></ul></div>
+        <div class="col-6 col-lg-2"><h5 class="text-gold">Support</h5><ul class="list-unstyled lh-lg"><li><a href="#contact">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li><li><a href="#">Return Policy</a></li></ul></div>
+        <div class="col-lg-4"><h5 class="text-gold">Newsletter</h5><p>Receive private sale previews and interior styling notes.</p><div class="input-group"><input class="form-control" placeholder="Email address"><button class="btn bg-gold fw-bold">Subscribe</button></div></div>
+      </div>
+      <hr class="border-secondary my-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between gap-2"><small>© 2026 Luxury Furniture. All rights reserved.</small><small>Designed with elegance, comfort and craft.</small></div>
+    </div>
+  </footer>
+
+  <!-- Cart Overlay + Sidebar -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping cart sidebar">
+    <div class="cart-header d-flex justify-content-between align-items-center">
+      <h4 class="mb-0"><i class="fa-solid fa-bag-shopping text-gold me-2"></i>Your Cart</h4>
+      <button class="btn btn-sm btn-outline-secondary rounded-circle" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Coupon Code</label>
+        <div class="input-group"><input id="couponInput" class="form-control" placeholder="LUX10 / SOFA20"><button class="btn bg-gold fw-bold" id="applyCoupon">Apply</button></div>
+        <small id="couponMsg" class="text-muted"></small>
+      </div>
+      <div class="d-flex justify-content-between"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+      <div class="d-flex justify-content-between"><span>Discount</span><strong id="discount">₹0</strong></div>
+      <hr>
+      <div class="d-flex justify-content-between fs-5"><span>Total</span><strong class="text-gold" id="cartTotal">₹0</strong></div>
+      <button class="lux-btn lux-btn-primary w-100 mt-3" id="checkoutBtn"><i class="fa-solid fa-receipt"></i> Checkout & Generate Receipt</button>
+    </div>
+  </aside>
+
+  <!-- Chatbot -->
+  <section class="chatbot glass-card" id="chatbot" aria-label="Luxury Assistant chatbot">
+    <div class="chat-head">
+      <div><strong><i class="fa-solid fa-wand-magic-sparkles text-gold me-2"></i>Luxury Assistant</strong><br><small style="color:rgba(255,255,255,.65)">Online · replies instantly</small></div>
+      <button class="btn btn-sm text-white" id="closeChat" aria-label="Close chatbot"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="quick-replies" id="quickReplies"></div>
+    <div class="chat-input">
+      <input id="chatInput" class="form-control" placeholder="Ask about delivery, warranty..." />
+      <button class="btn bg-gold" id="voiceBtn" title="Voice input"><i class="fa-solid fa-microphone"></i></button>
+      <button class="btn bg-gold" id="sendChat"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </section>
+  <button class="chat-toggle" id="chatToggle" aria-label="Open Luxury Assistant"><i class="fa-solid fa-comments"></i></button>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Product Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="quickViewBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0"><h5 class="modal-title"><i class="fa-regular fa-heart text-gold me-2"></i>Your Wishlist</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body" id="wishlistBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0"><h5 class="modal-title">Login / Signup</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <ul class="nav nav-pills mb-3" role="tablist"><li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#loginTab">Login</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#signupTab">Signup</button></li></ul>
+          <div class="tab-content">
+            <form class="tab-pane fade show active" id="loginTab"><input class="form-control mb-3" type="email" placeholder="Email"><input class="form-control mb-3" type="password" placeholder="Password"><button type="button" class="lux-btn lux-btn-primary w-100" data-bs-dismiss="modal">Login</button></form>
+            <form class="tab-pane fade" id="signupTab"><input class="form-control mb-3" placeholder="Full name"><input class="form-control mb-3" type="email" placeholder="Email"><input class="form-control mb-3" type="password" placeholder="Create password"><button type="button" class="lux-btn lux-btn-primary w-100" data-bs-dismiss="modal">Create Account</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* ==========================================================
+       Product Data
+    ========================================================== */
+    const products = [
+      { id: 1, name: 'Luxury Sofa', category: 'Sofas', material: 'leather', oldPrice: 185000, price: 148000, rating: 4.9, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=85', desc: 'Handcrafted Italian leather sofa with deep cushioning and brushed gold legs.' },
+      { id: 2, name: 'King Bed', category: 'Beds', material: 'wood', oldPrice: 210000, price: 168000, rating: 4.8, img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=85', desc: 'Statement king bed with premium upholstery and solid teak foundation.' },
+      { id: 3, name: 'Wooden Dining Set', category: 'Dining Tables', material: 'wood', oldPrice: 240000, price: 196000, rating: 4.7, img: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1000&q=85', desc: 'Six-seater dining set crafted from kiln-dried oak with sculptural chairs.' },
+      { id: 4, name: 'Executive Chair', category: 'Office Chairs', material: 'leather', oldPrice: 78000, price: 62000, rating: 4.6, img: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=1000&q=85', desc: 'Ergonomic luxury office chair with leather upholstery and metal detailing.' },
+      { id: 5, name: 'Premium Wardrobe', category: 'Wardrobes', material: 'wood', oldPrice: 275000, price: 229000, rating: 4.9, img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1000&q=85', desc: 'Modular wardrobe with soft-close drawers, mirror finish and warm walnut veneer.' },
+      { id: 6, name: 'Coffee Table', category: 'Dining Tables', material: 'metal', oldPrice: 69000, price: 52000, rating: 4.5, img: 'https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=1000&q=85', desc: 'Minimal coffee table with stone-look top and champagne metal frame.' },
+      { id: 7, name: 'Velvet Accent Chair', category: 'Office Chairs', material: 'metal', oldPrice: 64000, price: 48000, rating: 4.7, img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=1000&q=85', desc: 'Luxe velvet accent chair with contour comfort and gold finished base.' },
+      { id: 8, name: 'Decor Console', category: 'Decor', material: 'wood', oldPrice: 95000, price: 79000, rating: 4.4, img: 'https://images.unsplash.com/photo-1602872030490-4a484a7b3ba6?auto=format&fit=crop&w=1000&q=85', desc: 'Elegant console for entryways, artwork displays and premium interior styling.' }
+    ];
+
+    const categories = [
+      { name: 'Sofas', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85', icon: 'fa-couch' },
+      { name: 'Beds', img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85', icon: 'fa-bed' },
+      { name: 'Dining Tables', img: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=900&q=85', icon: 'fa-utensils' },
+      { name: 'Office Chairs', img: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=900&q=85', icon: 'fa-chair' },
+      { name: 'Wardrobes', img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=85', icon: 'fa-door-closed' },
+      { name: 'Decor', img: 'https://images.unsplash.com/photo-1602872030490-4a484a7b3ba6?auto=format&fit=crop&w=900&q=85', icon: 'fa-spa' }
+    ];
+
+    /* State */
+    let cart = JSON.parse(localStorage.getItem('lf_cart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('lf_wishlist')) || [];
+    let appliedCoupon = null;
+
+    const formatINR = amount => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => document.querySelectorAll(selector);
+
+    /* Loader + Initial Toast */
+    window.addEventListener('load', () => {
+      setTimeout(() => $('#loader').classList.add('hide'), 700);
+      setTimeout(() => bootstrap.Toast.getOrCreateInstance($('#offerToast')).show(), 1300);
+    });
+
+    /* Navbar Scroll + Parallax */
+    window.addEventListener('scroll', () => {
+      $('#mainNav').classList.toggle('scrolled', window.scrollY > 60);
+      $('#backToTop').classList.toggle('show', window.scrollY > 600);
+      const hero = $('.hero');
+      if (hero && window.innerWidth > 991) hero.style.backgroundPositionY = `${window.scrollY * 0.35}px`;
+    });
+    $('#backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* Smooth Section Fade + Counters */
+    let countersStarted = false;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.id === 'about' && !countersStarted) { countersStarted = true; animateCounters(); }
+        }
+      });
+    }, { threshold: .16 });
+    $$('.fade-section').forEach(section => observer.observe(section));
+
+    function animateCounters() {
+      $$('.counter').forEach(counter => {
+        const target = +counter.dataset.target;
+        const duration = 1800;
+        const startTime = performance.now();
+        const tick = now => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = Math.floor(progress * target);
+          counter.textContent = value.toLocaleString('en-IN') + (target >= 1000 ? '+' : '');
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }
+
+    /* Dark Mode */
+    const savedTheme = localStorage.getItem('lf_theme') || 'light';
+    document.documentElement.dataset.theme = savedTheme;
+    updateDarkIcon();
+    $('#darkToggle').addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('lf_theme', next);
+      updateDarkIcon();
+    });
+    function updateDarkIcon() {
+      $('#darkToggle i').className = document.documentElement.dataset.theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    /* Render Categories */
+    function renderCategories() {
+      $('#categoryGrid').innerHTML = categories.map(cat => `
+        <div class="col-sm-6 col-lg-4">
+          <article class="category-card" data-category="${cat.name}">
+            <img src="${cat.img}" alt="${cat.name} furniture category">
+            <div class="category-info">
+              <h3 class="h4 mb-1"><i class="fa-solid ${cat.icon} text-gold me-2"></i>${cat.name}</h3>
+              <p class="mb-0 small">View Collection <i class="fa-solid fa-arrow-right ms-1"></i></p>
+            </div>
+          </article>
+        </div>`).join('');
+      $$('.category-card').forEach(card => card.addEventListener('click', () => {
+        $('#categoryFilter').value = card.dataset.category;
+        document.querySelector('#products').scrollIntoView({ behavior: 'smooth' });
+        renderProducts();
+      }));
+    }
+
+    /* Render Products with Filters */
+    function getFilteredProducts() {
+      const search = $('#productSearch').value.trim().toLowerCase();
+      const category = $('#categoryFilter').value;
+      const maxPrice = +$('#priceFilter').value;
+      const minRating = +$('#ratingFilter').value;
+      const material = $('#materialFilter').value;
+      return products.filter(p =>
+        (p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search) || p.material.toLowerCase().includes(search)) &&
+        (category === 'all' || p.category === category) &&
+        p.price <= maxPrice && p.rating >= minRating &&
+        (material === 'all' || p.material === material)
+      );
+    }
+
+    function renderProducts() {
+      $('#priceValue').textContent = (+$('#priceFilter').value).toLocaleString('en-IN');
+      const list = getFilteredProducts();
+      $('#noProducts').classList.toggle('d-none', list.length > 0);
+      $('#productGrid').innerHTML = list.map(p => {
+        const discount = Math.round((1 - p.price / p.oldPrice) * 100);
+        const isWish = wishlist.includes(p.id);
+        return `
+        <div class="col-md-6 col-xl-4">
+          <article class="product-card glass-card">
+            <div class="product-img-box">
+              <img src="${p.img}" alt="${p.name}">
+              <span class="discount-pill">${discount}% OFF</span>
+              <button class="wishlist-floating ${isWish ? 'active' : ''}" onclick="toggleWishlist(${p.id})" aria-label="Add ${p.name} to wishlist"><i class="${isWish ? 'fa-solid' : 'fa-regular'} fa-heart"></i></button>
+            </div>
+            <div class="product-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <h5 class="mb-1">${p.name}</h5><span class="badge rounded-pill text-bg-dark">${p.material}</span>
+              </div>
+              <p class="small text-muted mb-2">${p.category}</p>
+              <div class="stars mb-2">${renderStars(p.rating)} <span class="text-muted ms-1">${p.rating}</span></div>
+              <div class="d-flex align-items-center gap-2 mb-3"><span class="old-price">${formatINR(p.oldPrice)}</span><span class="price">${formatINR(p.price)}</span></div>
+              <div class="d-flex gap-2">
+                <button class="btn bg-gold fw-bold flex-grow-1 rounded-pill" onclick="addToCart(${p.id})"><i class="fa-solid fa-cart-plus me-1"></i>Add</button>
+                <button class="btn btn-outline-secondary rounded-pill" onclick="quickView(${p.id})"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+          </article>
+        </div>`;
+      }).join('');
+    }
+    function renderStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= .5;
+      return Array(full).fill('<i class="fa-solid fa-star"></i>').join('') + (half ? '<i class="fa-solid fa-star-half-stroke"></i>' : '');
+    }
+    ['productSearch','categoryFilter','priceFilter','ratingFilter','materialFilter'].forEach(id => $('#' + id).addEventListener('input', renderProducts));
+    $('#clearFilters').addEventListener('click', () => { $('#productSearch').value=''; $('#categoryFilter').value='all'; $('#priceFilter').value=300000; $('#ratingFilter').value=0; $('#materialFilter').value='all'; renderProducts(); });
+    $('#navSearch').addEventListener('input', e => { $('#productSearch').value = e.target.value; renderProducts(); });
+
+    /* Cart System */
+    function saveCart() { localStorage.setItem('lf_cart', JSON.stringify(cart)); updateCounts(); renderCart(); }
+    function addToCart(id) {
+      const item = cart.find(i => i.id === id);
+      item ? item.qty++ : cart.push({ id, qty: 1 });
+      saveCart(); notify(`${products.find(p => p.id === id).name} added to cart.`);
+    }
+    function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); }
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) removeFromCart(id); else saveCart();
+    }
+    function renderCart() {
+      if (!cart.length) {
+        $('#cartItems').innerHTML = '<div class="text-center p-4"><i class="fa-solid fa-bag-shopping fa-2x text-gold mb-3"></i><h5>Your cart is empty</h5><p class="text-muted">Add premium furniture to begin.</p></div>';
+      } else {
+        $('#cartItems').innerHTML = cart.map(item => {
+          const p = products.find(product => product.id === item.id);
+          return `<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div><strong>${p.name}</strong><br><small class="text-muted">${formatINR(p.price)}</small><br><div class="qty-control mt-2"><button onclick="changeQty(${p.id},-1)">−</button><span>${item.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div><button class="btn btn-sm text-danger" onclick="removeFromCart(${p.id})"><i class="fa-solid fa-trash"></i></button></div>`;
+        }).join('');
+      }
+      const subtotal = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
+      let discount = 0;
+      if (appliedCoupon === 'LUX10') discount = subtotal * .10;
+      if (appliedCoupon === 'SOFA20') discount = cart.reduce((sum, item) => {
+        const p = products.find(prod => prod.id === item.id);
+        return sum + (p.category === 'Sofas' ? p.price * item.qty * .20 : 0);
+      }, 0);
+      $('#subtotal').textContent = formatINR(subtotal);
+      $('#discount').textContent = '-' + formatINR(discount);
+      $('#cartTotal').textContent = formatINR(Math.max(subtotal - discount, 0));
+    }
+    function updateCounts() {
+      $('#cartCount').textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+      $('#wishlistCount').textContent = wishlist.length;
+    }
+    function openCart() { $('#cartSidebar').classList.add('open'); $('#overlay').classList.add('show'); renderCart(); }
+    function closeCart() { $('#cartSidebar').classList.remove('open'); $('#overlay').classList.remove('show'); }
+    $('#cartBtn').addEventListener('click', openCart); $('#closeCart').addEventListener('click', closeCart); $('#overlay').addEventListener('click', closeCart);
+    $('#applyCoupon').addEventListener('click', () => {
+      const code = $('#couponInput').value.trim().toUpperCase();
+      if (['LUX10','SOFA20'].includes(code)) { appliedCoupon = code; $('#couponMsg').textContent = `${code} applied successfully.`; }
+      else { appliedCoupon = null; $('#couponMsg').textContent = 'Invalid coupon. Try LUX10 or SOFA20.'; }
+      renderCart();
+    });
+    $('#checkoutBtn').addEventListener('click', generateReceipt);
+
+    function generateReceipt() {
+      if (!cart.length) return notify('Your cart is empty.');
+      const rows = cart.map(item => {
+        const p = products.find(prod => prod.id === item.id);
+        return `<tr><td>${p.name}</td><td>${item.qty}</td><td>${formatINR(p.price)}</td><td>${formatINR(p.price * item.qty)}</td></tr>`;
+      }).join('');
+      const subtotal = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
+      let discount = appliedCoupon === 'LUX10' ? subtotal * .10 : 0;
+      if (appliedCoupon === 'SOFA20') discount = cart.reduce((sum, item) => { const p = products.find(prod => prod.id === item.id); return sum + (p.category === 'Sofas' ? p.price * item.qty * .20 : 0); }, 0);
+      const total = subtotal - discount;
+      const receipt = `<!doctype html><html><head><title>Luxury Furniture Receipt</title><style>body{font-family:Arial;padding:32px;color:#111}.head{border-bottom:3px solid #c9a44c;padding-bottom:16px}h1{font-family:Georgia;color:#c9a44c}table{width:100%;border-collapse:collapse;margin-top:24px}td,th{border-bottom:1px solid #ddd;padding:12px;text-align:left}.total{font-size:22px;color:#c9a44c;font-weight:700}.print{background:#c9a44c;border:0;padding:12px 18px;border-radius:20px;font-weight:700}@media print{.print{display:none}}</style></head><body><div class="head"><h1>Luxury Furniture</h1><p>Invoice #LF-${Date.now()}<br>Date: ${new Date().toLocaleString('en-IN')}</p></div><table><thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Amount</th></tr></thead><tbody>${rows}</tbody></table><p>Subtotal: <strong>${formatINR(subtotal)}</strong></p><p>Discount: <strong>${formatINR(discount)}</strong> ${appliedCoupon ? '(' + appliedCoupon + ')' : ''}</p><p class="total">Total Paid: ${formatINR(total)}</p><p>Delivery estimate: 3–7 business days. Thank you for choosing Luxury Furniture.</p><button class="print" onclick="window.print()">Print Invoice</button></body></html>`;
+      const win = window.open('', '_blank');
+      win.document.write(receipt); win.document.close();
+      cart = []; appliedCoupon = null; saveCart(); closeCart();
+    }
+
+    /* Wishlist + Quick View */
+    function saveWishlist() { localStorage.setItem('lf_wishlist', JSON.stringify(wishlist)); updateCounts(); renderProducts(); }
+    function toggleWishlist(id) {
+      wishlist = wishlist.includes(id) ? wishlist.filter(x => x !== id) : [...wishlist, id];
+      saveWishlist(); notify(wishlist.includes(id) ? 'Added to wishlist.' : 'Removed from wishlist.');
+    }
+    function quickView(id) {
+      const p = products.find(prod => prod.id === id);
+      $('#quickViewBody').innerHTML = `<div class="row g-4 align-items-center"><div class="col-md-6"><img class="rounded-4" src="${p.img}" alt="${p.name}"></div><div class="col-md-6"><span class="section-kicker">${p.category}</span><h2 class="mt-2">${p.name}</h2><div class="stars mb-2">${renderStars(p.rating)} ${p.rating}</div><p>${p.desc}</p><p><span class="old-price me-2">${formatINR(p.oldPrice)}</span><span class="price">${formatINR(p.price)}</span></p><p><strong>Material:</strong> ${p.material}</p><button class="lux-btn lux-btn-primary" onclick="addToCart(${p.id})" data-bs-dismiss="modal"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button></div></div>`;
+      bootstrap.Modal.getOrCreateInstance($('#quickViewModal')).show();
+    }
+    $('#wishlistNavBtn').addEventListener('click', () => {
+      const list = wishlist.map(id => products.find(p => p.id === id)).filter(Boolean);
+      $('#wishlistBody').innerHTML = list.length ? `<div class="row g-3">${list.map(p => `<div class="col-md-6"><div class="glass-card p-3 d-flex gap-3"><img src="${p.img}" style="width:90px;height:90px;object-fit:cover;border-radius:16px" alt="${p.name}"><div><strong>${p.name}</strong><p class="mb-2 text-gold fw-bold">${formatINR(p.price)}</p><button class="btn btn-sm bg-gold fw-bold" onclick="addToCart(${p.id})">Add to Cart</button></div></div></div>`).join('')}</div>` : '<p class="text-center text-muted p-4">Your wishlist is empty.</p>';
+      bootstrap.Modal.getOrCreateInstance($('#wishlistModal')).show();
+    });
+
+    /* Chatbot FAQ - Enhanced with ComfortNest Furniture Training Data */
+    const knowledgeBase = {
+      store: {
+        name: 'Luxury Furniture',
+        hours: 'Monday-Saturday 10:00 AM to 8:00 PM, Sunday 11:00 AM to 6:00 PM',
+        phone: '+91 98765 43210',
+        email: 'support@luxuryfurniture.com',
+        address: 'Royal Avenue, MG Road, Bengaluru, Karnataka 560001',
+        deliveryAreas: 'City-wide and nearby districts, 36 cities served'
+      }
+    };
+
+    const faqs = [
+      // Sofas
+      { keys: ['sofa price','sofa cost','price of sofa','sofas'], answer: 'Our luxury sofas start from ₹48,000 for accent chairs, and ₹1,48,000 for our full Italian leather sofas. We offer L-shape sofas, recliners, leather sofas, and fabric sofas. Use coupon SOFA20 for 20% off selected sofa designs.' },
+      { keys: ['sofa under','cheap sofa','budget sofa','sofa 30000'], answer: 'We have multiple sofa options under ₹30,000 in our Decor / Accent range. Would you prefer fabric or leather? Check our Velvet Accent Chair at ₹48,000.' },
+      { keys: ['sofa type','what sofas do you have','types of sofa'], answer: 'We offer L-shape sofas, recliners, leather sofas, and fabric sofas. All with premium cushioning and solid wood frames.' },
+
+      // Beds
+      { keys: ['bed','i need a bed','bed price','king bed','queen bed'], answer: 'Sure! What size are you looking for? Single, Queen, or King? Our King Bed starts at ₹1,68,000 with solid teak foundation and premium upholstery.' },
+      { keys: ['bed size','single','queen','king'], answer: 'We offer Single, Queen, and King size beds. Our King Bed is our bestseller at ₹1,68,000. All beds come with 1-5 year warranty.' },
+
+      // Categories
+      { keys: ['categories','what do you sell','products','catalog'], answer: 'Our categories: Sofas, Beds, Dining Tables, Office Chairs, Wardrobes, Decor, TV Units, and Coffee Tables. Plus full Custom Furniture service!' },
+      { keys: ['dining','dining table'], answer: 'Our Wooden Dining Set (6-seater, kiln-dried oak) is ₹1,96,000. Perfect for modern homes.' },
+      { keys: ['office chair','chair','executive chair'], answer: 'Our Executive Chair is ₹62,000 with ergonomic leather upholstery. We also have Velvet Accent Chairs at ₹48,000.' },
+      { keys: ['wardrobe','almirah'], answer: 'Our Premium Wardrobe is ₹2,29,000 with soft-close drawers, mirror finish and warm walnut veneer.' },
+      { keys: ['tv unit','tv'], answer: 'Yes! TV Units are available in our Decor collection. Check our Decor Console at ₹79,000.' },
+      { keys: ['coffee table','center table'], answer: 'Our Coffee Table with stone-look top and champagne metal frame is ₹52,000.' },
+
+      // Delivery
+      { keys: ['delivery','delivery time','shipping','home delivery'], answer: 'Yes, we provide home delivery and installation. Delivery: 3-7 business days for ready stock, 2-4 weeks for custom orders.' },
+      { keys: ['free delivery','delivery free','delivery charges','is delivery free'], answer: 'Free delivery is available on orders above ₹15,000. We deliver city-wide and to nearby districts - 36 cities served.' },
+      { keys: ['installation'], answer: 'Yes, home delivery includes professional installation at no extra cost.' },
+
+      // Custom
+      { keys: ['custom','custom furniture','customize','personalize'], answer: 'Yes, size, color, and material customization is available! We can personalize dimensions, fabric, finish, color and material. Custom orders take 2-4 weeks.' },
+
+      // Offers
+      { keys: ['discount','offer','available discounts','coupon','sale'], answer: 'Current offers: LUX10 for 10% off your first order, and SOFA20 for 20% off sofas. Also: BEDLUX - Buy Bed, Get Mattress Discount.' },
+
+      // Payment
+      { keys: ['payment','payment methods','pay','upi','cash','card'], answer: 'We accept UPI, Cash, Cards, EMI, Net Banking, and Bank Transfers. EMI is available on selected products.' },
+      { keys: ['emi'], answer: 'Yes, EMI is available on selected products. We accept Cards, UPI, Net Banking, and EMI options at checkout.' },
+
+      // Warranty / Returns
+      { keys: ['warranty','guarantee'], answer: 'Warranty is available from 1-5 years depending on product category and material. All pieces are quality-checked before delivery.' },
+      { keys: ['return','return policy','refund','damaged'], answer: 'Returns are accepted within 7 days for damaged/eligible ready-made products. Custom orders are covered for manufacturing defects.' },
+
+      // Contact / Support
+      { keys: ['contact','support','help','call','whatsapp','email','phone'], answer: 'You can call, WhatsApp, or email our support team. Phone: +91 98765 43210 | Email: support@luxuryfurniture.com | Hours: Mon-Sat 10AM-8PM, Sun 11AM-6PM' },
+      { keys: ['store hours','opening hours','timing','open'], answer: 'Working Hours: Monday-Saturday 10:00 AM to 8:00 PM, Sunday 11:00 AM to 6:00 PM. Visit us at Royal Avenue, MG Road, Bengaluru.' },
+      { keys: ['address','location','store','where'], answer: 'Luxury Furniture, Royal Avenue, MG Road, Bengaluru, Karnataka 560001. We deliver to 36 cities.' },
+
+      // Misc
+      { keys: ['track','order status'], answer: 'For order tracking, please contact our support team at +91 98765 43210 with your Invoice #.' },
+      { keys: ['material','wood','leather','metal','fabric'], answer: 'We use premium materials: Solid wood, Italian leather, brushed metal, and luxurious upholstery fabrics.' }
+    ];
+
+    const quicks = [
+      'Sofa price?', 
+      'I need a bed',
+      'Delivery time?', 
+      'Is delivery free?',
+      'Custom furniture?', 
+      'EMI available?',
+      'Payment methods?', 
+      'Warranty?'
+    ];
+
+    function initChat() {
+      addBubble('bot', 'Welcome to Luxury Furniture! I\'m your Luxury Assistant. How may I assist you today?');
+      addBubble('bot', 'I can help with: Sofas, Beds, Delivery, Custom orders, EMI, Warranty & more.');
+      renderQuickReplies();
+    }
+
+    function renderQuickReplies() {
+      $('#quickReplies').innerHTML = quicks.map(q => `<button onclick="askQuick(\`${q.replace(/`/g,'')}\`)">${q}</button>`).join('');
+    }
+
+    function addBubble(type, text) {
+      const div = document.createElement('div'); div.className = `bubble ${type}`; div.textContent = text; $('#chatMessages').appendChild(div); $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+    }
+
+    function findBestAnswer(lower) {
+      // Exact intent matches from training data
+      if (lower.includes('i need a bed') || lower === 'bed' || lower.includes('need a bed')) {
+        return 'Sure! What size are you looking for? Single, Queen, or King?';
+      }
+      if (lower.includes('sofa under') || lower.match(/sofa.*30000|30000.*sofa/)) {
+        return 'We have multiple sofa options under ₹30,000 in our Accent range. Would you prefer fabric or leather?';
+      }
+      if (lower.includes('is delivery free') || lower.includes('delivery free')) {
+        return 'Free delivery is available on orders above ₹15,000. We also include free installation!';
+      }
+
+      // Score-based FAQ matching
+      let bestMatch = null;
+      let bestScore = 0;
+      faqs.forEach(f => {
+        const score = f.keys.reduce((s, k) => s + (lower.includes(k) ? k.length : 0), 0);
+        if (score > bestScore) { bestScore = score; bestMatch = f; }
+      });
+      return bestMatch && bestScore > 2 ? bestMatch.answer : null;
+    }
+
+    function answerQuestion(text) {
+      addBubble('user', text);
+      const typing = document.createElement('div'); typing.className = 'bubble bot typing'; typing.innerHTML = '<span></span><span></span><span></span>'; $('#chatMessages').appendChild(typing); $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+      
+      setTimeout(() => {
+        typing.remove();
+        const lower = text.toLowerCase();
+        const answer = findBestAnswer(lower);
+        
+        if (answer) {
+          addBubble('bot', answer);
+        } else {
+          addBubble('bot', 'Sorry, I didn’t quite catch that. I can help with: sofas, beds, dining tables, delivery, custom furniture, EMI, warranty, returns, and store contact. Please contact our support team at +91 98765 43210 for specific queries.');
+        }
+      }, 750);
+    }
+
+    function askQuick(q) { answerQuestion(q); }
+    $('#chatToggle').addEventListener('click', () => $('#chatbot').classList.toggle('open'));
+    $('#closeChat').addEventListener('click', () => $('#chatbot').classList.remove('open'));
+    $('#sendChat').addEventListener('click', () => { const val = $('#chatInput').value.trim(); if (val) { $('#chatInput').value = ''; answerQuestion(val); } });
+    $('#chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('#sendChat').click(); });
+    $('#voiceBtn').addEventListener('click', () => {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return notify('Voice input is not supported in this browser.');
+      const rec = new SpeechRecognition(); rec.lang = 'en-IN'; rec.start();
+      rec.onresult = e => { $('#chatInput').value = e.results[0][0].transcript; $('#sendChat').click(); };
+      rec.onerror = () => notify('Could not capture voice. Please try again.');
+    });
+
+    /* Countdown Timer */
+    const expiry = new Date(); expiry.setDate(expiry.getDate() + 5); expiry.setHours(23,59,59,999);
+    setInterval(() => {
+      const diff = Math.max(expiry - new Date(), 0);
+      const d = Math.floor(diff / 86400000), h = Math.floor(diff / 3600000) % 24, m = Math.floor(diff / 60000) % 60, s = Math.floor(diff / 1000) % 60;
+      $('#days').textContent = String(d).padStart(2,'0'); $('#hours').textContent = String(h).padStart(2,'0'); $('#minutes').textContent = String(m).padStart(2,'0'); $('#seconds').textContent = String(s).padStart(2,'0');
+    }, 1000);
+
+    /* Forms + Notifications */
+    $('#contactForm').addEventListener('submit', e => { e.preventDefault(); notify('Thank you. Our luxury consultant will contact you soon.'); e.target.reset(); });
+    function notify(message) {
+      const el = document.createElement('div');
+      el.className = 'toast align-items-center text-bg-dark border-0 position-fixed bottom-0 start-50 translate-middle-x mb-4';
+      el.style.zIndex = 10000;
+      el.innerHTML = `<div class="d-flex"><div class="toast-body"><i class="fa-solid fa-circle-check text-gold me-2"></i>${message}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+      document.body.appendChild(el);
+      const toast = bootstrap.Toast.getOrCreateInstance(el, { delay: 2300 }); toast.show(); el.addEventListener('hidden.bs.toast', () => el.remove());
+    }
+
+    /* Initialize */
+    renderCategories(); renderProducts(); renderCart(); updateCounts(); initChat();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1036fabc97d85c9',t:'MTc4MjIxNzExNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
